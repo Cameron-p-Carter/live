@@ -38,7 +38,7 @@ async function generateUsers() {
         try {
             const userData = {
                 email: `consumer${i}@example.com`,
-                password: 'OceanPlum29',
+                password: '44doorsAA',
                 firstName: `Consumer${i}`,
                 lastName: `User${i}`,
                 phoneNumber: `04${String(i).padStart(8, '0')}`,
@@ -58,7 +58,7 @@ async function generateUsers() {
         try {
             const userData = {
                 email: `provider${i}@example.com`,
-                password: 'OceanPlum29',
+                password: '44doorsAA',
                 firstName: `Provider${i}`,
                 lastName: `User${i}`,
                 phoneNumber: `04${String(i + 100).padStart(8, '0')}`,
