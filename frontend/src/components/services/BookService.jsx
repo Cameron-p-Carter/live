@@ -24,9 +24,11 @@ const BookService = ({ service, consumerId, onBookingComplete, onCancel }) => {
         }
 
         try {
+            // The datetime-local input returns a local datetime string
+            // We need to create a Date object in local time and convert to ISO string
             const bookingData = {
                 serviceId: service.id,
-                bookingTime: new Date(bookingTime).toISOString()
+                bookingTime: bookingTime // Send the local datetime string directly
             };
 
             const response = await bookingApi.createBooking(consumerId, bookingData);

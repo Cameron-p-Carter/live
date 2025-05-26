@@ -65,14 +65,19 @@ const MyBookings = ({ userId, userType }) => {
     };
 
     const formatDateTime = (dateTimeStr) => {
+        // Create a date object from the UTC string
+        const date = new Date(dateTimeStr);
+        
         const options = { 
             year: 'numeric', 
             month: 'long', 
             day: 'numeric',
-            hour: '2-digit', 
-            minute: '2-digit'
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+            timeZoneName: 'short'
         };
-        return new Date(dateTimeStr).toLocaleDateString(undefined, options);
+        return date.toLocaleString('en-US', options);
     };
 
     const renderActions = (booking) => {
