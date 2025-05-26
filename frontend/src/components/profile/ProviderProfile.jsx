@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import serviceApi from '../../services/serviceApi';
+import reviewApi from '../../services/reviewApi';
+import ReviewList from '../reviews/ReviewList';
+import ProviderStats from '../reviews/ProviderStats';
 import './Profile.css';
 
 const ProviderProfile = () => {
     const { providerId } = useParams();
     const [provider, setProvider] = useState(null);
     const [services, setServices] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const [stats, setStats] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -20,12 +25,16 @@ const ProviderProfile = () => {
     const loadProviderData = async () => {
         try {
             setLoading(true);
-            const [providerData, servicesData] = await Promise.all([
+            const [providerData, servicesData, reviewsData, statsData] = await Promise.all([
                 serviceApi.getProviderProfile(providerId),
-                serviceApi.getProviderServices(providerId)
+                serviceApi.getProviderServices(providerId),
+                reviewApi.getProviderReviews(providerId),
+                reviewApi.getProviderStats(providerId)
             ]);
             setProvider(providerData);
             setServices(servicesData.filter(service => service.active));
+            setReviews(reviewsData);
+            setStats(statsData);
             setError('');
         } catch (err) {
             setError('Failed to load provider profile');
@@ -36,6 +45,10 @@ const ProviderProfile = () => {
 
     const handleBack = () => {
         navigate(-1);
+    };
+
+    const handleBookService = (serviceId) => {
+        navigate(`/services/book/${serviceId}`);
     };
 
     if (loading) {
@@ -89,20 +102,7 @@ const ProviderProfile = () => {
                     </div>
                 </div>
 
-                <div className="provider-stats">
-                    <div className="stat-item">
-                        <span className="stat-value">{provider.rating || 'N/A'}</span>
-                        <span className="stat-label">Rating</span>
-                    </div>
-                    <div className="stat-item">
-                        <span className="stat-value">{provider.totalBookings || 0}</span>
-                        <span className="stat-label">Jobs Completed</span>
-                    </div>
-                    <div className="stat-item">
-                        <span className="stat-value">{services.length}</span>
-                        <span className="stat-label">Active Services</span>
-                    </div>
-                </div>
+                {stats && <ProviderStats stats={stats} />}
 
                 <div className="provider-services">
                     <h3>Services Offered</h3>
@@ -119,10 +119,20 @@ const ProviderProfile = () => {
                                         <p className="description">{service.description}</p>
                                     )}
                                 </div>
-                                <button className="book-button">Book Service</button>
+                                <button 
+                                    className="book-button"
+                                    onClick={() => handleBookService(service.id)}
+                                >
+                                    Book Service
+                                </button>
                             </div>
                         ))}
                     </div>
+                </div>
+
+                <div className="provider-reviews">
+                    <h3>Reviews</h3>
+                    <ReviewList reviews={reviews} />
                 </div>
             </div>
         </div>

@@ -1,0 +1,282 @@
+/* Review Form */
+.review-form-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-info {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rating-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.star-rating {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.star-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.star-button.selected {
+    color: #ffd700;
+}
+
+.star-button:hover {
+    color: #ffd700;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.cancel-button,
+.submit-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.cancel-button {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.submit-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #e9ecef;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+.cancel-button:disabled,
+.submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Review List */
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.review-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.review-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.reviewer-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.review-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.star-display {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.star-display.large .star {
+    font-size: 1.5rem;
+}
+
+.star {
+    color: #ddd;
+}
+
+.star.filled {
+    color: #ffd700;
+}
+
+.star.half-filled {
+    position: relative;
+    display: inline-block;
+    color: #ddd;
+}
+
+.star.half-filled::before {
+    content: '★';
+    position: absolute;
+    color: #ffd700;
+    width: 50%;
+    overflow: hidden;
+}
+
+.review-service {
+    color: #666;
+    margin-bottom: 0.75rem;
+}
+
+.review-comment {
+    color: #333;
+    line-height: 1.5;
+}
+
+.no-reviews {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+}
+
+/* Provider Stats */
+.provider-stats {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.average-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating-number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.total-reviews {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.rating-distribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.distribution-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 50px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rating-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.distribution-bar-container {
+    height: 12px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.distribution-bar {
+    height: 100%;
+    background-color: #ffd700;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+.rating-count {
+    color: #666;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.provider-stats.loading {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .review-meta {
+        align-items: flex-start;
+    }
+
+    .stats-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .distribution-row {
+        grid-template-columns: 70px 1fr 40px;
+        gap: 0.5rem;
+    }
+}

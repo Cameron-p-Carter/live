@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import bookingApi from '../../services/bookingApi';
+import reviewApi from '../../services/reviewApi';
+import ReviewForm from '../reviews/ReviewForm';
+import ReviewList from '../reviews/ReviewList';
 import './bookings.css';
 
 const MyBookings = ({ userId, userType }) => {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [showReviewForm, setShowReviewForm] = useState(false);
+    const [bookingReviews, setBookingReviews] = useState({});
 
     useEffect(() => {
         loadBookings();
@@ -18,11 +24,34 @@ const MyBookings = ({ userId, userType }) => {
                 ? await bookingApi.getProviderBookings(userId)
                 : await bookingApi.getConsumerBookings(userId);
             setBookings(bookingsData);
+            
+            // Load reviews for completed bookings
+            const reviewPromises = bookingsData
+                .filter(booking => booking.status === 'COMPLETED')
+                .map(booking => loadBookingReview(booking.id));
+            
+            await Promise.all(reviewPromises);
             setError('');
         } catch (err) {
             setError('Failed to load bookings');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const loadBookingReview = async (bookingId) => {
+        try {
+            const review = await reviewApi.getReviewByBooking(bookingId);
+            setBookingReviews(prev => ({
+                ...prev,
+                [bookingId]: review
+            }));
+        } catch (err) {
+            // No review exists yet
+            setBookingReviews(prev => ({
+                ...prev,
+                [bookingId]: null
+            }));
         }
     };
 
@@ -64,20 +93,27 @@ const MyBookings = ({ userId, userType }) => {
         }
     };
 
+    const handleWriteReview = (booking) => {
+        setSelectedBooking(booking);
+        setShowReviewForm(true);
+    };
+
+    const handleReviewSubmitted = async () => {
+        setShowReviewForm(false);
+        setSelectedBooking(null);
+        await loadBookings();
+    };
+
     const formatDateTime = (dateTimeStr) => {
-        // Create a date object from the UTC string
-        const date = new Date(dateTimeStr);
-        
         const options = { 
             year: 'numeric', 
             month: 'long', 
             day: 'numeric',
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true,
-            timeZoneName: 'short'
+            hour12: true
         };
-        return date.toLocaleString('en-US', options);
+        return new Date(dateTimeStr).toLocaleString('en-US', options);
     };
 
     const renderActions = (booking) => {
@@ -126,6 +162,15 @@ const MyBookings = ({ userId, userType }) => {
                         Cancel Booking
                     </button>
                 );
+            } else if (status === 'COMPLETED' && !bookingReviews[booking.id]) {
+                return (
+                    <button 
+                        className="action-button review"
+                        onClick={() => handleWriteReview(booking)}
+                    >
+                        Write Review
+                    </button>
+                );
             }
             return null;
         }
@@ -146,6 +191,17 @@ const MyBookings = ({ userId, userType }) => {
                     ? 'No bookings received yet.'
                     : 'You have no bookings yet. Browse services to make your first booking!'}
             </div>
+        );
+    }
+
+    if (showReviewForm && selectedBooking) {
+        return (
+            <ReviewForm 
+                consumerId={userId}
+                booking={selectedBooking}
+                onReviewSubmitted={handleReviewSubmitted}
+                onCancel={() => setShowReviewForm(false)}
+            />
         );
     }
 
@@ -178,6 +234,13 @@ const MyBookings = ({ userId, userType }) => {
                         <div className="booking-actions">
                             {renderActions(booking)}
                         </div>
+
+                        {booking.status === 'COMPLETED' && bookingReviews[booking.id] && (
+                            <div className="booking-review">
+                                <h4>Your Review</h4>
+                                <ReviewList reviews={[bookingReviews[booking.id]]} />
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

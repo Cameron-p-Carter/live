@@ -1,216 +1,53 @@
-/* Common Styles */
-.provider-services,
-.consumer-services {
+.booking-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-}
-
-.provider-services-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-/* Service List */
-.service-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
 
-.service-list-empty,
-.no-services-message {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    font-size: 1.1rem;
-}
-
-.loading-message {
-    text-align: center;
-    padding: 2rem;
-    color: #007bff;
-    font-size: 1.1rem;
-}
-
-/* Service Card */
-.service-card {
-    background: white;
+.booking-form-container {
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.service-card h3 {
+.booking-form-container h2 {
+    margin: 0 0 1.5rem 0;
+    color: #333;
+}
+
+.service-summary {
+    margin-bottom: 2rem;
+}
+
+.service-summary h3 {
     margin: 0 0 1rem 0;
     color: #333;
-    font-size: 1.25rem;
-    padding-right: 80px;
 }
 
-.provider-name {
-    color: #007bff;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.provider-name:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-.price {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 1.25rem;
+.service-summary .price {
+    font-size: 1.5rem;
     font-weight: 600;
     color: #28a745;
-}
-
-.category {
-    display: inline-block;
-    background-color: #e9ecef;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.875rem;
-    color: #495057;
     margin-bottom: 1rem;
 }
 
-.status {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.875rem;
-    margin-left: 0.5rem;
-}
-
-.status.active {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.status.inactive {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-.service-details {
-    margin: 1rem 0;
-    flex-grow: 1;
-}
-
-.service-details p {
+.service-summary p {
     margin: 0.5rem 0;
-    color: #666;
+    color: #333;
 }
 
-.service-details .description {
-    font-style: italic;
+.service-summary .description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
     margin-top: 1rem;
 }
 
-/* Buttons */
-.actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: auto;
-}
-
-.action-button,
-.book-button,
-.service-button,
-.search-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-}
-
-.action-button:hover,
-.book-button:hover,
-.service-button:hover,
-.search-button:hover {
-    background-color: #0056b3;
-}
-
-.action-button.delete {
-    background-color: #dc3545;
-}
-
-.action-button.delete:hover {
-    background-color: #c82333;
-}
-
-.book-button {
-    margin-top: auto;
-    background-color: #28a745;
-}
-
-.book-button:hover {
-    background-color: #218838;
-}
-
-/* Consumer Services Filters */
-.services-filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    display: flex;
-    gap: 0.5rem;
-    flex: 1;
-    min-width: 200px;
-}
-
-.category-select,
-.location-input {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    flex-grow: 1;
-}
-
-.category-select:focus,
-.location-input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
-}
-
-/* Service Form */
-.service-form-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.service-form-container h2 {
-    margin-bottom: 2rem;
-    color: #333;
-}
-
-.service-form {
+.booking-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -227,26 +64,50 @@
     font-weight: 500;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.form-group input {
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+.form-help {
+    color: #666;
+    font-size: 0.9rem;
 }
 
-.form-group textarea {
-    min-height: 100px;
-    resize: vertical;
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.cancel-button,
+.book-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.cancel-button {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.book-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #e9ecef;
+}
+
+.book-button:hover {
+    background-color: #218838;
 }
 
 .error-message {
@@ -255,82 +116,144 @@
     border: 1px solid #dc3545;
     border-radius: 4px;
     background-color: #f8d7da;
+}
+
+.service-reviews {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-reviews h3 {
+    margin: 0 0 1.5rem 0;
+    color: #333;
+}
+
+.reviews-section {
+    margin-top: 2rem;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 2rem;
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+/* Provider Services List */
+.provider-services {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.provider-services h2 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.service-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-card h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.service-card .price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #28a745;
+    margin-bottom: 0.5rem;
+}
+
+.service-card .category {
+    color: #666;
+    font-size: 0.9rem;
     margin-bottom: 1rem;
 }
 
-.button-group {
+.service-card .details {
+    margin-bottom: 1.5rem;
+}
+
+.service-card .details p {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.service-card .description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.action-buttons {
     display: flex;
     gap: 1rem;
-    justify-content: flex-end;
     margin-top: 1rem;
 }
 
-.cancel-button {
-    padding: 0.75rem 1.5rem;
-    background: none;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+.edit-button,
+.delete-button {
+    padding: 0.5rem 1rem;
     border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.2s;
-}
-
-.cancel-button:hover {
-    background-color: #6c757d;
-    color: white;
-}
-
-.save-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #28a745;
-    color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: background-color 0.2s;
 }
 
-.save-button:hover {
-    background-color: #218838;
+.edit-button {
+    background-color: #007bff;
+    color: white;
 }
 
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .provider-services,
-    .consumer-services {
-        padding: 1rem;
-    }
-
-    .service-list {
+    .booking-page {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
 
-    .service-form-container {
+    .provider-services {
         padding: 1rem;
+    }
+
+    .services-list {
+        grid-template-columns: 1fr;
     }
 
     .button-group {
         flex-direction: column;
     }
 
-    .button-group button {
-        width: 100%;
-    }
-
-    .actions {
-        flex-direction: column;
-    }
-
-    .action-button {
-        width: 100%;
-    }
-
-    .services-filters {
-        flex-direction: column;
-    }
-
-    .filter-group {
+    .cancel-button,
+    .book-button {
         width: 100%;
     }
 }

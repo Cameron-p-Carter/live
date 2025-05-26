@@ -1,16 +1,22 @@
 .page-container {
-    min-height: 100vh;
-    background-color: #f8f9fa;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 2rem;
 }
 
+/* Provider Profile Page */
+.provider-profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* User Profile Page */
 .user-profile-page {
-    max-width: 1200px;
-    margin: 0 auto;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-header {
@@ -23,7 +29,6 @@
 .profile-header h2 {
     margin: 0;
     color: #333;
-    font-size: 2rem;
 }
 
 .edit-button {
@@ -32,8 +37,8 @@
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 1rem;
     cursor: pointer;
+    font-size: 1rem;
     transition: background-color 0.2s;
 }
 
@@ -41,23 +46,41 @@
     background-color: #0056b3;
 }
 
+.back-button {
+    align-self: flex-start;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.back-button:hover {
+    color: #0056b3;
+}
+
 .profile-section {
     margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .profile-section h3 {
     margin: 0 0 1.5rem 0;
     color: #333;
-    font-size: 1.5rem;
 }
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 }
 
@@ -74,12 +97,11 @@
 .info-item label {
     color: #666;
     font-size: 0.9rem;
-    font-weight: 500;
 }
 
 .info-item p {
-    margin: 0;
     color: #333;
+    margin: 0;
     font-size: 1rem;
 }
 
@@ -90,18 +112,19 @@
 }
 
 .stat-item {
-    text-align: center;
-    padding: 1rem;
     background-color: #f8f9fa;
+    padding: 1.5rem;
     border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .stat-value {
-    display: block;
     font-size: 2rem;
     font-weight: 600;
     color: #007bff;
-    margin-bottom: 0.5rem;
 }
 
 .stat-label {
@@ -109,134 +132,132 @@
     font-size: 0.9rem;
 }
 
-/* Edit Profile Form Styles */
-.edit-profile-form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.business-name {
+    color: #666;
+    margin: 0.5rem 0;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+.provider-info {
+    max-width: 600px;
+    margin: 1rem auto;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.provider-location {
+    color: #666;
+    margin: 0.5rem 0;
 }
 
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
+.provider-bio,
+.service-description {
     color: #333;
-    font-size: 0.9rem;
-    font-weight: 500;
+    line-height: 1.6;
+    margin: 1rem 0;
 }
 
-.form-group input,
-.form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.password-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.toggle-button {
-    padding: 0.5rem 1rem;
-    background: none;
-    border: 1px solid #007bff;
-    color: #007bff;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-}
-
-.toggle-button:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-.button-group {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
+.provider-services {
     margin-top: 2rem;
 }
 
-.cancel-button,
-.save-button {
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
+.provider-services h3 {
+    margin-bottom: 1.5rem;
+    color: #333;
 }
 
-.cancel-button {
-    background: none;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+.service-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
-.cancel-button:hover {
-    background-color: #6c757d;
-    color: white;
+.service-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.save-button {
-    background-color: #28a745;
+.service-card h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #28a745;
+    margin-bottom: 0.5rem;
+}
+
+.category {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.service-details {
+    margin-bottom: 1.5rem;
+}
+
+.service-details p {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.service-details .description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.book-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
 }
 
-.save-button:hover {
-    background-color: #218838;
+.book-button:hover {
+    background-color: #0056b3;
 }
 
-.error-message {
+.profile-loading {
+    text-align: center;
+    padding: 2rem;
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+.profile-error {
     color: #dc3545;
     padding: 0.75rem;
     border: 1px solid #dc3545;
     border-radius: 4px;
     background-color: #f8d7da;
     margin-bottom: 1rem;
-    font-size: 0.875rem;
 }
 
+.provider-reviews {
+    margin-top: 2rem;
+}
+
+.provider-reviews h3 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .page-container {
         padding: 1rem;
     }
 
     .user-profile-page {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     .profile-header {
@@ -245,16 +266,19 @@
         text-align: center;
     }
 
-    .info-grid,
-    .form-grid {
+    .info-grid {
         grid-template-columns: 1fr;
     }
 
-    .button-group {
-        flex-direction: column;
+    .service-list {
+        grid-template-columns: 1fr;
     }
 
-    .button-group button {
+    .provider-info {
+        padding: 0 1rem;
+    }
+
+    .edit-button {
         width: 100%;
     }
 }
