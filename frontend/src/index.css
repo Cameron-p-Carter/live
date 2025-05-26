@@ -1,3 +1,35 @@
+:root {
+    /* Retro Garden Color Palette */
+    --color-earth: #8B4513;
+    --color-moss: #606C38;
+    --color-sage: #83A95C;
+    --color-cream: #FEFAE0;
+    --color-terracotta: #BC6C25;
+    --color-bark: #432818;
+    --color-leaf: #283618;
+    --color-clay: #DDA15E;
+    
+    /* Status Colors */
+    --color-success: var(--color-sage);
+    --color-error: #A94442;
+    --color-warning: var(--color-clay);
+    --color-info: var(--color-moss);
+
+    /* Font Sizes */
+    --font-size-small: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-large: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,12 +43,12 @@ html, body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: 'Georgia', 'Times New Roman', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f8f9fa;
+    background-color: var(--color-cream);
+    color: var(--color-bark);
+    line-height: 1.6;
 }
 
 #root {
@@ -25,10 +57,130 @@ body {
     flex-direction: column;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Palatino', 'Garamond', serif;
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-md);
+}
+
 button {
     font-family: inherit;
+    cursor: pointer;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 4px;
+    border: 2px solid var(--color-moss);
+    background-color: var(--color-moss);
+    color: var(--color-cream);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: var(--color-leaf);
+    border-color: var(--color-leaf);
 }
 
 input, select, textarea {
     font-family: inherit;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-clay);
+    border-radius: 4px;
+    background-color: var(--color-cream);
+    color: var(--color-bark);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-moss);
+    box-shadow: 0 0 0 2px rgba(96, 108, 56, 0.2);
+}
+
+/* Card Styling */
+.card {
+    background-color: white;
+    border: 2px solid var(--color-clay);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 4px 4px 0 rgba(188, 108, 37, 0.2);
+}
+
+/* Links */
+a {
+    color: var(--color-moss);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-leaf);
+    text-decoration: underline;
+}
+
+/* Status Messages */
+.success-message {
+    color: var(--color-success);
+    padding: var(--spacing-md);
+    border: 2px solid var(--color-success);
+    border-radius: 4px;
+    background-color: rgba(131, 169, 92, 0.1);
+    margin-bottom: var(--spacing-md);
+}
+
+.error-message {
+    color: var(--color-error);
+    padding: var(--spacing-md);
+    border: 2px solid var(--color-error);
+    border-radius: 4px;
+    background-color: rgba(169, 68, 66, 0.1);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Loading State */
+.loading-message {
+    color: var(--color-moss);
+    text-align: center;
+    padding: var(--spacing-xl);
+    font-style: italic;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    background-color: rgba(254, 250, 224, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(67, 40, 24, 0.1);
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-earth);
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --spacing-lg: 1rem;
+        --spacing-xl: 1.5rem;
+    }
+
+    .container {
+        padding: var(--spacing-md);
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
 }

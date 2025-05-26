@@ -49,11 +49,9 @@ const BookService = ({ service, consumerId, onBookingComplete, onCancel }) => {
         }
 
         try {
-            // The datetime-local input returns a local datetime string
-            // We need to create a Date object in local time and convert to ISO string
             const bookingData = {
                 serviceId: service.id,
-                bookingTime: bookingTime // Send the local datetime string directly
+                bookingTime: bookingTime
             };
 
             const response = await bookingApi.createBooking(consumerId, bookingData);
@@ -101,7 +99,7 @@ const BookService = ({ service, consumerId, onBookingComplete, onCancel }) => {
                         <button type="button" className="cancel-button" onClick={onCancel}>
                             Cancel
                         </button>
-                        <button type="submit" className="book-button">
+                        <button type="submit" className="submit-button">
                             Confirm Booking
                         </button>
                     </div>
@@ -116,7 +114,11 @@ const BookService = ({ service, consumerId, onBookingComplete, onCancel }) => {
                     <>
                         {stats && <ProviderStats stats={stats} />}
                         <div className="reviews-section">
-                            <ReviewList reviews={reviews} />
+                            {reviews.length > 0 ? (
+                                <ReviewList reviews={reviews} />
+                            ) : (
+                                <p className="no-reviews-message">No reviews yet</p>
+                            )}
                         </div>
                     </>
                 )}
