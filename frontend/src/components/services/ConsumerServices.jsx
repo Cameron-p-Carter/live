@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import serviceApi from '../../services/serviceApi';
+import BookService from './BookService';
 import './services.css';
 
-const ConsumerServices = () => {
+const ConsumerServices = ({ userId }) => {
     const [services, setServices] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [location, setLocation] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const [selectedService, setSelectedService] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -79,6 +81,23 @@ const ConsumerServices = () => {
         navigate(`/provider/${providerId}`);
     };
 
+    const handleBookingComplete = () => {
+        setSelectedService(null);
+        // Optionally navigate to bookings page or show success message
+        navigate('/bookings');
+    };
+
+    if (selectedService) {
+        return (
+            <BookService
+                service={selectedService}
+                consumerId={userId}
+                onBookingComplete={handleBookingComplete}
+                onCancel={() => setSelectedService(null)}
+            />
+        );
+    }
+
     return (
         <div className="consumer-services">
             <div className="services-filters">
@@ -140,7 +159,12 @@ const ConsumerServices = () => {
                                     <p className="description">{service.description}</p>
                                 )}
                             </div>
-                            <button className="book-button">Book Service</button>
+                            <button 
+                                className="book-button"
+                                onClick={() => setSelectedService(service)}
+                            >
+                                Book Service
+                            </button>
                         </div>
                     ))}
                 </div>

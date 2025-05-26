@@ -61,11 +61,10 @@ public class BookingService {
 
         booking = bookingRepository.save(booking);
 
-        // Process payment
+        // Process payment but keep booking in PENDING state
         boolean paymentSuccess = paymentService.processPayment(booking);
         if (paymentSuccess) {
             booking.setPaymentStatus(PaymentStatus.PAID);
-            booking.setStatus(BookingStatus.CONFIRMED);
             booking = bookingRepository.save(booking);
         } else {
             booking.setPaymentStatus(PaymentStatus.FAILED);

@@ -1,0 +1,264 @@
+.bookings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.bookings-container h2 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.bookings-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.booking-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.booking-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.25rem;
+    padding-right: 1rem;
+}
+
+.booking-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.booking-status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.booking-status.confirmed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.booking-status.completed {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.booking-status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.booking-details {
+    flex-grow: 1;
+    margin: 1rem 0;
+}
+
+.booking-details p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.booking-details strong {
+    color: #333;
+}
+
+.service-description {
+    font-style: italic;
+    margin-top: 1rem;
+    color: #666;
+}
+
+.booking-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.action-button.confirm {
+    background-color: #28a745;
+    color: white;
+}
+
+.action-button.confirm:hover {
+    background-color: #218838;
+}
+
+.action-button.complete {
+    background-color: #007bff;
+    color: white;
+}
+
+.action-button.complete:hover {
+    background-color: #0056b3;
+}
+
+.action-button.cancel,
+.action-button.reject {
+    background-color: #dc3545;
+    color: white;
+}
+
+.action-button.cancel:hover,
+.action-button.reject:hover {
+    background-color: #c82333;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 2rem;
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+.error-message {
+    color: #dc3545;
+    padding: 0.75rem;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    background-color: #f8d7da;
+    margin-bottom: 1rem;
+}
+
+.no-bookings-message {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Booking Form Styles */
+.booking-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form-container h2 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.service-summary {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.service-summary h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.service-summary .price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #28a745;
+    margin-bottom: 1rem;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.form-help {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .bookings-container {
+        padding: 1rem;
+    }
+
+    .bookings-list {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-form-container {
+        padding: 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+
+    .booking-actions {
+        flex-direction: column;
+    }
+
+    .action-button {
+        width: 100%;
+    }
+}

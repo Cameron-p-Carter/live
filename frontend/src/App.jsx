@@ -7,6 +7,7 @@ import ConsumerServices from './components/services/ConsumerServices';
 import ProviderProfile from './components/profile/ProviderProfile';
 import UserProfile from './components/profile/UserProfile';
 import EditProfile from './components/profile/EditProfile';
+import MyBookings from './components/bookings/MyBookings';
 import './App.css';
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
                 <Link to="/" className="home-link">
                   {user.userType === 'PROVIDER' ? 'My Services' : 'Browse Services'}
                 </Link>
+                <Link to="/bookings" className="bookings-link">
+                  My Bookings
+                </Link>
               </div>
               <div className="header-right">
                 <Link to="/profile" className="profile-link">
@@ -61,7 +65,7 @@ function App() {
                   user.userType === 'PROVIDER' ? (
                     <ProviderServices providerId={user.id} />
                   ) : (
-                    <ConsumerServices />
+                    <ConsumerServices userId={user.id} />
                   )
                 } 
               />
@@ -79,6 +83,15 @@ function App() {
                   <EditProfile 
                     user={user} 
                     onUpdateSuccess={handleProfileUpdate} 
+                  />
+                } 
+              />
+              <Route 
+                path="/bookings" 
+                element={
+                  <MyBookings 
+                    userId={user.id}
+                    userType={user.userType}
                   />
                 } 
               />
