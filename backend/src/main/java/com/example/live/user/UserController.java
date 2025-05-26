@@ -1,58 +1,68 @@
 package com.example.live.user;
 
+import com.example.live.user.dto.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-
+// Facade Pattern: Provides a simplified interface to the complex user management system
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:5173") // Add CORS support for frontend
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
-  @Autowired
-  private UserRepository userRepository;
+    private final UserService userService;
 
-  @GetMapping
-  public List<User> getAllUsers() {
-    return userRepository.findAll();
-  } 
-
-  @GetMapping("/{id}")
-  public User getUserById(@PathVariable Long id) {
-    return userRepository.findById(id).get();
-  }
-
-  @PostMapping
-  public User createUser(@RequestBody User user) {
-    return userRepository.save(user);
-  }
-  
-  @PutMapping("/{id}")
-  public User updateUser(@PathVariable Long id, @RequestBody User user) {
-    User existingUser = userRepository.findById(id).get();
-    existingUser.setName(user.getName());
-    existingUser.setEmail(user.getEmail());
-    return userRepository.save(existingUser);
-  }
-
-  @DeleteMapping("/{id}")
-  public String deleteUser(@PathVariable Long id) {
-    try {
-      userRepository.findById(id).get();
-      userRepository.deleteById(id);
-      return "User deleted successfully";
-    } catch (Exception e) {
-      return "User not found";
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
-  }
-  
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        LoginResponse response = userService.login(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{id}/change-password")
+    public ResponseEntity<LoginResponse> changePassword(
+            @PathVariable Long id,
+            @RequestBody PasswordChangeRequest request) {
+        LoginResponse response = userService.changePassword(id, request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> registerUser(@RequestBody UserRegistrationRequest request) {
+        UserDTO newUser = userService.registerUser(request);
+        return ResponseEntity.ok(newUser);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        UserDTO user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateUser(
+            @PathVariable Long id,
+            @RequestBody UserRegistrationRequest request) {
+        UserDTO updatedUser = userService.updateUser(id, request);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully");
+    }
 }
