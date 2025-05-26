@@ -44,15 +44,25 @@ const Wallet = ({ userId, userType }) => {
     };
 
     const formatDateTime = (dateTimeStr) => {
-        const options = { 
-            year: 'numeric', 
-            month: 'long', 
+        // Create a date object in UTC
+        const utcDate = new Date(dateTimeStr);
+        
+        // Convert to Sydney time by adding the offset
+        const sydneyOffset = 10; // Sydney is UTC+10
+        const sydneyDate = new Date(utcDate.getTime() + (sydneyOffset * 60 * 60 * 1000));
+        
+        // Format the date
+        const formatter = new Intl.DateTimeFormat('en-AU', {
+            year: 'numeric',
+            month: 'long',
             day: 'numeric',
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true
-        };
-        return new Date(dateTimeStr).toLocaleString('en-US', options);
+            hour12: true,
+            timeZone: 'Australia/Sydney'
+        });
+        
+        return formatter.format(sydneyDate);
     };
 
     const getTransactionSign = (transaction) => {
