@@ -1,0 +1,210 @@
+.wallet-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.wallet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.wallet-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.wallet-balance {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.balance-label {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.balance-amount {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #28a745;
+}
+
+/* Deposit Section */
+.deposit-section {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.deposit-section h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.deposit-form {
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.currency-symbol {
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    color: #666;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.deposit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.deposit-button:hover {
+    background-color: #218838;
+}
+
+/* Transactions Section */
+.transactions-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.transactions-section h3 {
+    margin: 0 0 1.5rem 0;
+    color: #333;
+}
+
+.no-transactions {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+}
+
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.transaction-item {
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.transaction-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.transaction-type {
+    font-weight: 500;
+    color: #333;
+}
+
+.transaction-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.transaction-amount {
+    margin-bottom: 0.5rem;
+}
+
+.amount {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.amount.positive {
+    color: #28a745;
+}
+
+.amount.negative {
+    color: #dc3545;
+}
+
+.transaction-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Loading and Error States */
+.loading-message {
+    text-align: center;
+    padding: 2rem;
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+.error-message {
+    color: #dc3545;
+    padding: 0.75rem;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    background-color: #f8d7da;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .wallet-container {
+        padding: 1rem;
+    }
+
+    .wallet-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .wallet-balance {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .transaction-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

@@ -8,6 +8,7 @@ import ProviderProfile from './components/profile/ProviderProfile';
 import UserProfile from './components/profile/UserProfile';
 import EditProfile from './components/profile/EditProfile';
 import MyBookings from './components/bookings/MyBookings';
+import Wallet from './components/wallet/Wallet';
 import './App.css';
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
                 </Link>
                 <Link to="/bookings" className="bookings-link">
                   My Bookings
+                </Link>
+                <Link to="/wallet" className="wallet-link">
+                  My Wallet
                 </Link>
               </div>
               <div className="header-right">
@@ -90,6 +94,15 @@ function App() {
                 path="/bookings" 
                 element={
                   <MyBookings 
+                    userId={user.id}
+                    userType={user.userType}
+                  />
+                } 
+              />
+              <Route 
+                path="/wallet" 
+                element={
+                  <Wallet 
                     userId={user.id}
                     userType={user.userType}
                   />

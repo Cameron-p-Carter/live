@@ -34,7 +34,8 @@
 
 .home-link,
 .profile-link,
-.bookings-link {
+.bookings-link,
+.wallet-link {
     color: #333;
     text-decoration: none;
     font-weight: 500;
@@ -43,7 +44,8 @@
 
 .home-link:hover,
 .profile-link:hover,
-.bookings-link:hover {
+.bookings-link:hover,
+.wallet-link:hover {
     color: #007bff;
 }
 
